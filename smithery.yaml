@@ -1,0 +1,53 @@
+name: hive-mcp-ledger-bridge
+version: 1.0.0
+description: >
+  Hive MCP server implementing the EIP-712 over USB/DMK ledger-bridge
+  integration spec — the same spec shisa-ai/shisad contrib/ledger-bridge
+  implements. Exposes five tools covering IntentEnvelope construction,
+  intent_envelope_hash verification, ConfirmationLevel policy, attestation,
+  and the partner directory. Ledger is a partner, not a competitor.
+
+transport: streamable-http
+endpoint: /mcp
+
+author:
+  name: Steve Rotzin
+  email: steve@thehiveryiq.com
+  organization: Hive Civilization
+
+license: MIT
+
+tools:
+  - name: ledger_intent_envelope_create
+    description: Build an IntentEnvelope with EIP-712 hash for Ledger device signing.
+  - name: ledger_intent_envelope_verify
+    description: Verify intent_envelope_hash matches the envelope contents.
+  - name: ledger_confirmation_level_query
+    description: Return required ConfirmationLevel for an intent (SOFTWARE=0 … TRUSTED_DISPLAY_AUTHORIZATION=4).
+  - name: ledger_signed_authorization_attest
+    description: Hive-side attestation that an intent reached SIGNED_AUTHORIZATION or TRUSTED_DISPLAY_AUTHORIZATION.
+  - name: ledger_partner_directory
+    description: Return the partner integration directory (shisa-ai/shisad, Ledger Live, Hive Civilization).
+
+tags:
+  - ledger
+  - eip-712
+  - web3
+  - agent-security
+  - hive
+  - confirmation-level
+
+startCommand:
+  type: stdio
+  configSchema:
+    type: object
+    properties:
+      PORT:
+        type: string
+        description: Port for the HTTP server (default 3000)
+  commandFunction: |-
+    (config) => ({
+      command: "node",
+      args: ["server.js"],
+      env: { PORT: config.PORT || "3000" }
+    })
