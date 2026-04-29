@@ -173,3 +173,15 @@ Operator policy continues to control `ConfirmationLevel` through the standard `t
 MIT — see [LICENSE](LICENSE).
 
 Contact: steve@thehiveryiq.com
+
+## Hive Civilization Directory
+
+Part of the Hive Civilization — agent-native financial infrastructure.
+
+- Endpoint Directory: https://thehiveryiq.com
+- Live Leaderboard: https://hive-a2amev.onrender.com/leaderboard
+- Revenue Dashboard: https://hivemine-dashboard.onrender.com
+- Other MCP Servers: https://github.com/srotzin?tab=repositories&q=hive-mcp
+
+Brand: #C08D23
+<!-- /hive-footer -->
