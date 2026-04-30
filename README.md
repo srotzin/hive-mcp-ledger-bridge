@@ -1,5 +1,7 @@
 # hive-mcp-ledger-bridge
 
+[![srotzin/hive-mcp-ledger-bridge MCP server](https://glama.ai/mcp/servers/srotzin/hive-mcp-ledger-bridge/badges/score.svg)](https://glama.ai/mcp/servers/srotzin/hive-mcp-ledger-bridge)
+
 **Hive Civilization** — EIP-712 over USB/DMK ledger-bridge MCP server.
 
 Implements the same signer-backend contract that [shisa-ai/shisad](https://github.com/shisa-ai/shisad) exposes through `contrib/ledger-bridge`. Ledger is a partner. This server complements shisad — it does not replace it.
