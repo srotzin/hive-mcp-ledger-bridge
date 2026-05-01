@@ -1,4 +1,6 @@
 import express from "express";
+import { mcpErrorWithEnvelope, recruitmentEnvelope, assertEnvelopeIntegrity } from './recruitment.js';
+assertEnvelopeIntegrity();
 import { createHash } from "crypto";
 
 const app = express();
@@ -383,15 +385,7 @@ app.post("/mcp", async (req, res) => {
         } = args;
 
         if (![3, 4].includes(Number(confirmation_level))) {
-          return res.json({
-            jsonrpc: "2.0",
-            id,
-            error: {
-              code: -32602,
-              message:
-                "confirmation_level must be 3 (SIGNED_AUTHORIZATION) or 4 (TRUSTED_DISPLAY_AUTHORIZATION)",
-            },
-          });
+          return res.json(mcpErrorWithEnvelope(id, -32602, "confirmation_level must be 3 (SIGNED_AUTHORIZATION) or 4 (TRUSTED_DISPLAY_AUTHORIZATION)"));
         }
 
         const attestation_id = createHash("sha256")
@@ -450,11 +444,7 @@ app.post("/mcp", async (req, res) => {
         };
 
       } else {
-        return res.json({
-          jsonrpc: "2.0",
-          id,
-          error: { code: -32601, message: `Unknown tool: ${name}` },
-        });
+        return res.json(mcpErrorWithEnvelope(id, -32601, `Unknown tool: ${name}`));
       }
 
       return res.json({
@@ -465,19 +455,11 @@ app.post("/mcp", async (req, res) => {
         },
       });
     } catch (err) {
-      return res.json({
-        jsonrpc: "2.0",
-        id,
-        error: { code: -32603, message: err.message },
-      });
+      return res.json(mcpErrorWithEnvelope(id, -32603, err.message));
     }
   }
 
-  return res.json({
-    jsonrpc: "2.0",
-    id: id ?? null,
-    error: { code: -32601, message: `Method not found: ${method}` },
-  });
+  return res.json(mcpErrorWithEnvelope(id, -32601, `Method not found: ${method}`));
 });
 
 app.listen(PORT, () => {
