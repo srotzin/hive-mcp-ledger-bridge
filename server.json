@@ -1,0 +1,29 @@
+{
+  "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
+  "name": "io.github.srotzin/hive-mcp-ledger-bridge",
+  "description": "Hive MCP server implementing the EIP-712 over USB/DMK ledger-bridge integration spec\u2026",
+  "title": "Hive Ledger Bridge",
+  "websiteUrl": "https://thehiveryiq.com",
+  "repository": {
+    "url": "https://github.com/srotzin/hive-mcp-ledger-bridge",
+    "source": "github"
+  },
+  "version": "1.0.0",
+  "remotes": [
+    {
+      "type": "streamable-http",
+      "url": "https://hive-mcp-gateway.onrender.com/ledger-bridge/mcp"
+    }
+  ],
+  "_meta": {
+    "io.modelcontextprotocol.registry/publisher-provided": {
+      "tool": "hive-release-tool",
+      "version": "1.0.0",
+      "build_info": {
+        "stack": "hive-civilization",
+        "settlement": "USDC on Base",
+        "license": "MIT"
+      }
+    }
+  }
+}
